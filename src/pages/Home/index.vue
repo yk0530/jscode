@@ -10,9 +10,7 @@
     <!-- 猜你喜欢 -->
     <Like />
     <!--楼层-->
-    <Floor />
-    <!--楼层-->
-    <Floor />
+    <Floor v-for="floor in floorList" :key="floor.id" :list="floor"/>
     <!--商标-->
     <Brand />
   </div>
@@ -36,6 +34,14 @@
       Rank,
       TodayRecommend,
     },
+    computed:{
+      ...mapState({
+        floorList:state=>state.home.floorList
+      })
+    },
+    mounted(){
+      this.$store.dispatch('getFloorList');
+    }
   }
 </script>
 
